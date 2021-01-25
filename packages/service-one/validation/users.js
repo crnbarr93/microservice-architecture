@@ -9,5 +9,12 @@ exports.validate = (method) => {
         body("email", "Invalid email").exists().isEmail(),
       ];
     }
+    case "likeCat": {
+      return [
+        body("catId", "Cat ID field is required and must be an integer")
+          .exists()
+          .isInt(),
+      ];
+    }
   }
 };

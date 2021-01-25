@@ -1,34 +1,57 @@
+const { fetchCatById } = require("../fetch/cats");
+
+class User {
+  constructor(id, name, email, likedCats = []) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.likedCats = likedCats;
+  }
+
+  update(user) {
+    const keys = Object.keys(user);
+
+    keys.forEach((key) => (this[key] = user[key]));
+  }
+
+  likeCat(catId) {
+    this.likedCats.push(catId);
+  }
+
+  async getLikedCats() {
+    return Promise.all(
+      this.likedCats.map(async (catId) => await fetchCatById(catId))
+    );
+  }
+}
+
 class UserStore {
-  users = [
-    {
-      id: 1,
-      name: "Joe Bloggs",
-      email: "jbloggs@notreallyanemail.com",
-    },
-  ];
+  users = [new User(1, "Joe Bloggs", "jbloggs@notreallyanemail.com", [1])];
 
   getUserById(id) {
     return this.users.find((user) => user.id === parseInt(id));
   }
 
-  updateUser(user) {
-    this.users = this.users.map((_user) =>
-      _user.id === user.id ? user : _user
-    );
+  createUser(user) {
+    this.users.push(new User(user.id, user.name, user.email));
   }
 
   saveUser(user) {
-    const savedUser = this.getUserById(user.id);
-
     if (!user) return false;
 
+    const savedUser = this.getUserById(user.id);
+
     if (savedUser) {
-      this.updateUser(user);
+      savedUser.update(user);
     } else {
-      this.users.push(user);
+      this.createUser(user);
     }
 
     return true;
+  }
+
+  getUsersByLikedCat(catId) {
+    return this.users.filter((user) => user.likedCats.includes(catId));
   }
 }
 
