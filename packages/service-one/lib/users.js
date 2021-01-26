@@ -33,7 +33,7 @@ class UserStore {
   }
 
   createUser(user) {
-    this.users.push(new User(user.id, user.name, user.email));
+    this.users.push(new User(this.users.length + 1, user.name, user.email));
   }
 
   saveUser(user) {
@@ -48,6 +48,10 @@ class UserStore {
     }
 
     return true;
+  }
+
+  deleteUser(userID) {
+    this.users = this.users.filter(({ id }) => id !== parseInt(userID));
   }
 
   getUsersByLikedCat(catId) {

@@ -24,10 +24,14 @@ class CatStore {
     if (savedCat) {
       this.updateCat(cat);
     } else {
-      this.cats.push(cat);
+      this.cats.push({ ...cat, id: this.cats.length + 1, numberOfLikes: 0 });
     }
 
     return true;
+  }
+
+  deleteCat(catID) {
+    this.cats = this.cats.filter((cat) => cat.id !== parseInt(catID));
   }
 }
 

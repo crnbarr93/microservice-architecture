@@ -1,0 +1,190 @@
+body {
+  background-color: #282c34;
+  color: white;
+}
+
+.App {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.usersection__container {
+  display: block;
+  padding: 30px;
+
+  background: white;
+  color: black;
+  border-radius: 12px;
+}
+
+.usersection__container table {
+  width: 100%;
+}
+
+.catsection__container {
+  display: block;
+  padding: 30px;
+
+  background: white;
+  color: black;
+  border-radius: 12px;
+}
+
+.catsection__container table {
+  width: 100%;
+}
+
+form {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form__group input {
+  height: 30px;
+  background: #282c34;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+}
+
+form button {
+  background: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  height: 40px;
+  align-self: flex-end;
+}
+
+form button:hover {
+  cursor: pointer;
+}
+
+.td--delete {
+  color: red;
+}
+
+.td--delete:hover {
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 1px solid #282c34;
+}
+
+thead tr {
+  height: 40px;
+}
+
+tbody tr {
+  padding: 5px 0px;
+  height: 40px;
+}
+
+tbody tr:nth-child(even) {
+  background: #282c34;
+  color: white;
+}
+
+tbody tr:hover {
+  cursor: pointer;
+}
+
+.catgallery__container {
+  background: white;
+  border-radius: 12px;
+  grid-column: 1/-1;
+  color: black;
+  padding: 15px;
+}
+
+.catbox__container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background: #282c34;
+  color: white;
+  width: 200px;
+  border-radius: 12px;
+}
+
+.catbox__container button {
+  margin-top: 20px;
+  background: #5cb85c;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.catbox__container button:hover {
+  cursor: pointer;
+}
+
+.catbox__liked {
+  margin-top: 20px;
+  color: #5cb85c;
+}
+
+.catgallery__grid {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 230px);
+  grid-gap: 20px;
+}

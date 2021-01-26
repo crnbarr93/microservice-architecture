@@ -8,6 +8,7 @@ userRouter.get("/", function (req, res) {
 });
 
 userRouter.post("/", validate("createUser"), function (req, res) {
+  console.log(req.body);
   userStore.saveUser(req.body);
 
   res.send(req.body);
@@ -28,6 +29,12 @@ userRouter.patch("/:id", validate("updateUser"), function (req, res) {
   res.send(req.body);
 });
 
+userRouter.delete("/:id", function (req, res) {
+  userStore.deleteUser(req.params.id);
+
+  res.send(true);
+});
+
 userRouter.get("/:id/cats", async function (req, res) {
   const savedUser = userStore.getUserById(req.params.id);
   if (!savedUser) res.status(404).send();
@@ -37,15 +44,12 @@ userRouter.get("/:id/cats", async function (req, res) {
   res.send({ ...savedUser, likedCats });
 });
 
-userRouter.post("/:id/cats", validate("likeCat"), function (req, res) {
+userRouter.post("/:id/likecat/:catid", function (req, res) {
   const savedUser = userStore.getUserById(req.params.id);
   if (!savedUser) res.status(404).send();
 
-  const {
-    body: { catId },
-  } = req;
-
-  savedUser.likeCat(catId);
+  savedUser.likeCat(parseInt(req.params.catid));
+  res.send(true);
 });
 
 module.exports = userRouter;

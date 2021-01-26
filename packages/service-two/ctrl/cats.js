@@ -23,6 +23,12 @@ catsRouter.get("/:id", function (req, res) {
   }
 });
 
+catsRouter.delete("/:id", function (req, res) {
+  catsStore.deleteCat(req.params.id);
+
+  res.send(true);
+});
+
 catsRouter.patch("/:id", validate("updateCat"), function (req, res) {
   catsStore.saveCat(req.body);
 
