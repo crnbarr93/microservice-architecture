@@ -1,4 +1,5 @@
 const { fetchCatById } = require("../fetch/cats");
+const { publisher } = require("../../comms");
 
 class User {
   constructor(id, name, email, likedCats = []) {
@@ -16,6 +17,10 @@ class User {
 
   likeCat(catId) {
     this.likedCats.push(catId);
+    publisher.publish(
+      "liked_cat",
+      JSON.stringify({ user: this.id, cat: catId })
+    );
   }
 
   async getLikedCats() {

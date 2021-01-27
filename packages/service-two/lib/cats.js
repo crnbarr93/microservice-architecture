@@ -1,3 +1,5 @@
+const { subscriber } = require("../../comms");
+
 class CatStore {
   cats = [
     {
@@ -7,6 +9,16 @@ class CatStore {
       numberOfLikes: 0,
     },
   ];
+
+  onLikedCat(message) {
+    const { cat } = JSON.parse(message);
+    console.log(message);
+    this.cats = this.cats.map((_cat) =>
+      _cat.id === cat
+        ? { ..._cat, numberOfLikes: _cat.numberOfLikes + 1 }
+        : _cat
+    );
+  }
 
   getCatById(id) {
     return this.cats.find((cat) => cat.id === parseInt(id));
@@ -36,5 +48,7 @@ class CatStore {
 }
 
 const catStore = new CatStore();
+
+subscriber.on("liked_cat", (message) => catStore.onLikedCat(message));
 
 module.exports = catStore;
