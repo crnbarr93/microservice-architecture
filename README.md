@@ -20,3 +20,7 @@ npm run start
 ```
 
 This will start each service independently, including the basic web page to interact with the services. A Redis server is required.
+The default ports are:
+  - Users: `:8001`
+  - Cats: `:8002`
+  - Frontend: `:3000`
